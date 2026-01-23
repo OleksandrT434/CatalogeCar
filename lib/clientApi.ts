@@ -1,31 +1,28 @@
-import { api } from "./api";
-import type { Car, CarsListResponse } from "./types";
+import axiosClient from './api';
 
+export const fetchCars = async (
+  page: number,
+  limit: number,
+  brand: string | null,
+  rentalPrice: number | null,
+  minMileage: number | null,
+  maxMileage: number | null
+) => {
+  const { data } = await axiosClient.get('/cars', {
+    params: {
+      page,
+      limit,
+      brand: brand || undefined,
+      rentalPrice: rentalPrice,
+      minMileage: minMileage || undefined,
+      maxMileage: maxMileage || undefined,
+    },
+  });
 
-type GetCarsParams = {
-  brand?: string | null;
-  price?: number | null;
-  mileageFrom?: number | null;
-  mileageTo?: number | null;
-  page?: number;
-  limit?: number;
+  return data;
 };
 
-export async function getCars(params: GetCarsParams): Promise<CarsListResponse> {
-    const q: Record<string, unknown> = {};
-    if (params.brand) q.brand = params.brand;
-    if (params.price) q.price = params.price;
-    if (params.mileageFrom) q.mileageFrom = params.mileageFrom;
-    if (params.mileageTo) q.mileageTo = params.mileageTo;
-    q.page = params.page ?? 1;
-    q.limit = params.limit ?? 12;
-
-    const response = await api.get ("/cars", {params: q});
-    return response.data as CarsListResponse;
-}
-
-export async function getCarById(id: string): Promise<Car> {
-  const res = await api.get(`/cars/${id}`);
-
-    return res.data as Car;
+export const brandsApi = async () => {
+  const {data} = await axiosClient.get('/brands')
+  return data;
 }

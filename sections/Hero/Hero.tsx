@@ -9,6 +9,7 @@ export default function Hero() {
         <Image
           src="/Picture.jpg"
           alt="Car"
+          sizes="100vw" 
           fill
           style={{ objectFit: "cover" }}
           priority
