@@ -7,6 +7,7 @@ import Filter from '@/components/Filter/Filter';
 import { brandsApi } from '@/lib/clientApi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import css from './page.module.css';
 
 import { useState, useEffect } from 'react'; 
 
@@ -29,7 +30,7 @@ const hasMore = cars.length >= page * 12;
 useEffect(() => {
   const loadCars = async () => {
     setLoading(true);
-    const data = await fetchCars(page, 12, brand, price, mileage?.from, mileage?.to);
+    const data = await fetchCars(page, 12, brand, price, mileage?.from || null, mileage?.to || null);
     setCars(prev =>
       page === 1 ? data.cars : [...prev, ...data.cars]
     );
@@ -56,30 +57,47 @@ useEffect(() => {
       toast.error('Failed to load brands');
     }
   };
-
   loadBrands();
 }, []);
+
+useEffect(() => {
+  if (page > 1 && !loading && cars.length > 0) {
+    window.scrollBy({
+      top: 400, 
+      behavior: 'smooth',
+    });
+  }
+}, [cars.length]); 
 
 function onLoadMore() {
     setPage(prevPage => prevPage + 1);
 }
     return (
-        <main>
+        <main className={css.mainContainer}>
             <Filter
                 brands={brands}
                 draftBrand={draftBrand}
                 draftPrice={draftPrice}
                 draftMileage={draftMileage}
-
                 onDraftBrandChange={setDraftBrand}
                 onDraftPriceChange={setDraftPrice}
                 onDraftMileageChange={setDraftMileage}
                 onSearch={onSearch}
-                                 />
-            <CarList cars={cars} />
-            {loading && <div className="spinner">Loading...</div>}
-            <LoadMoreButton onLoadMore={onLoadMore} hasMore={hasMore} loading={loading} />
-           <ToastContainer />
-        </main>
-    )
+            />
+            <div className={css.contentWrapper}>
+              
+      <CarList cars={cars} />
+      <div className={css.loadMoreWrapper}>
+          {(hasMore || loading) && (
+            <LoadMoreButton 
+              onLoadMore={onLoadMore} 
+              hasMore={hasMore} 
+              isLoading={loading}
+            />
+          )}
+      </div>
+    </div>
+    <ToastContainer />
+  </main>
+);
 }

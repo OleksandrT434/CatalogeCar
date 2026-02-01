@@ -1,0 +1,17 @@
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow-anchor: none; 
+}
+
+.loadMoreWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 124px;
+  min-height: 44px; 
+  box-sizing: content-box;
+}

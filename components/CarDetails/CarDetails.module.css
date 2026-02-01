@@ -1,0 +1,168 @@
+.section {
+  padding: 40px 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 72px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.image {
+  width: 640px;
+  object-fit: cover;
+  border-radius: 14px;
+  height: 450px;
+}
+
+.booking {
+  display: flex;
+  flex-direction: column;
+  padding: 32px; 
+  border-radius: 20px;
+  border: 1px solid #d4d4d4; 
+  background-color: #FFFFFF;
+}
+.bookingTitle{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #121417;
+}
+.bookingSubtitle {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 24px;
+  color: #606470;
+}
+.inputField {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #F7F7FB;
+  border: none;
+  margin-bottom: 16px;
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+}
+
+.textareaField {
+  height: 100px;
+  resize: none;
+  background: #F7F7FB;
+  border-radius: 12px;
+  font-size: 14px;
+  padding: 14px 18px;
+}
+
+.bookingTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  margin-bottom: 8px;
+  color: #121417;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  color: #3470ff;
+  padding-bottom: 32px;
+}
+
+.bookBtn {
+  margin: 24px auto; 
+  padding: 12px 58px; 
+  border-radius: 12px;
+  background: #3470ff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.bookBtn:hover {
+  background: #0b44cd;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  width: 488px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.title span {
+  color: #3470ff;
+}
+
+.meta {
+  color: #000000;
+  font-size: 14px;
+}
+
+.description {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  margin-bottom: 68px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+}
+
+.block:not(:last-child) {
+  margin-bottom: 110px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.metaContainer {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 16px;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #000000;
+}

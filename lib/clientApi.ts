@@ -1,4 +1,6 @@
-import axiosClient from './api';
+import axiosClient from '@/lib/api';
+import { Car } from '@/lib/types';
+
 
 export const fetchCars = async (
   page: number,
@@ -26,3 +28,9 @@ export const brandsApi = async () => {
   const {data} = await axiosClient.get('/brands')
   return data;
 }
+
+export const carDetailsApi = async (id: string): Promise<Car> => {
+  
+  const { data } = await axiosClient.get<Car>(`/cars/${id}`);
+  return data;
+};

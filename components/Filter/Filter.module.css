@@ -1,73 +1,64 @@
 .button{
-    background-color: #0B44CD;
+    background-color: #3470ff;
     color: white;
     border: none;
     padding: 12px 51px;
     cursor: pointer;
     border-radius: 12px;
     align-self: flex-end;
-    margin-top: 30px;
     }
+    
 .container{
     gap: 16px;
-    width: 300px;
+    max-width: 1200px;
     margin-bottom: 56px;
     margin-top: 84px;
     display: flex;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
-    background-color: #ffffff;
     }
 
-.select{
-    color: rgb(11, 11, 11);
-    background-color: #dadce0;
-    border: none;
-    padding: 12px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    
-    }
-.select option{
-    color: white;
-    background-color: #b4b5b8;
-    }
 .filterGroup{
     display: flex;
     flex-direction: column;
     gap: 8px;
     }
+
 .filterGroup label{
     font-size: 14px;
     font-weight: 500;
-    color: #999;
+    color: #8A8A89;
     }
+
 .mileageInputs{
     display: flex;
     gap: 0;
     align-items: center;
+    overflow: hidden;
     }
+    
 .mileageInputs input{
     flex: 1;
     padding: 12px 16px;
     border: none;
-    background-color: #dadce0;
-    }
+    background-color: #F7F7FB;
+ }
+
 .mileageInputs input:first-child{
     border-radius: 12px 0 0 12px;
-    }
+ }
+
 .mileageInputs input:last-child{
     border-radius: 0 12px 12px 0;
-    }
+}
+
 .mileageSeparator{
-    color: #999;
-    font-weight: 500;
-    padding: 0;
-    border-left: 1px solid #999;
-    border-right: 1px solid #999;
-    height: 24px;
-    }
+    width: 1px;
+    height: 48px;
+    background-color: rgba(138, 138, 137, 0.2); 
+}
+
 .wrapper{
     background-color: #ffffff;
     width: 100%;

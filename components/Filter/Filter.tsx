@@ -1,4 +1,10 @@
+'use client';
+
 import css from './Filter.module.css';
+import Select from 'react-select';
+import { BrandOption, PriceOption, getBrandStyles, getPriceStyles } from '../../lib/SelectStyles';
+import  {FiltersProps}  from '@/lib/types';
+ 
 
 export default function Filters({
   brands,
@@ -9,7 +15,14 @@ export default function Filters({
   onDraftPriceChange,
   onDraftMileageChange,
   onSearch,
-}: FiltersProps) {
+}:FiltersProps) {
+
+ const priceOptions: PriceOption[] = [30, 40, 50, 60, 70, 80].map(p => ({ value: p, label: `${p}` }));
+
+const brandOptions: BrandOption[] = brands.map(brand => ({
+  value: brand,
+  label: brand,
+}));
   return (
     <section className={css.wrapper}>
     <form
@@ -19,78 +32,66 @@ export default function Filters({
         onSearch();
       }}
     >
-      {/* BRAND */}
-      <div className={css.filterGroup}>
-        <label>Car brand</label>
-        <select
-          className={css.select}
-          value={draftBrand ?? ''}
-          onChange={(e) =>
-            onDraftBrandChange(e.target.value || null)
-          }
-        >
-          <option value="">Choose a brand</option>
-          {brands.map((b) => (
-            <option key={b} value={b}>
-              {b}
-            </option>
-          ))}
-        </select>
-      </div>
 
+{/* BRAND */}
+<div className={css.filterGroup}>
+  <label className={css.label}>Car brand</label>
+  <Select<BrandOption>
+    instanceId="brand-select"
+  isClearable={true}
+  options={brandOptions}
+  placeholder="Choose a brand"
+  styles={getBrandStyles()}
+  components={{ IndicatorSeparator: () => null }}
+  value={brandOptions.find(opt => opt.value === draftBrand) || null}
+  onChange={(option) => onDraftBrandChange(option?.value || null)}
+/>
+</div>
       {/* PRICE */}
-      <div className={css.filterGroup}>
-        <label>Price/ 1 hour</label>
-        <select 
-        
-          className={css.select}
-          value={draftPrice ?? ''}
-          onChange={(e) =>
-            onDraftPriceChange(
-              e.target.value ? Number(e.target.value) : null
-            )
-          }
-        >
-          <option value="">Choose a price</option>
-          <option value="30">30</option>
-          <option value="40">40</option>
-          <option value="50">50</option>
-          <option value="60">60</option>
-          <option value="70">70</option>
-          <option value="80">80</option>
-        </select>
-      </div>
-
+<div className={css.filterGroup}>
+  <label className={css.label}>Price/ 1 hour</label>
+  <Select<PriceOption>
+    instanceId="price-select"
+    isClearable={true}
+    options={priceOptions}
+    styles={getPriceStyles()}
+    placeholder="Choose a price"
+    formatOptionLabel={({ label }, { context }) => 
+      context === 'value' ? `To ${label}$` : label
+    }
+    onChange={(option) => onDraftPriceChange(option ? Number(option.value) : null)}
+  value={priceOptions.find(opt => opt.value === draftPrice) || null}
+  />
+</div>
       {/* MILEAGE */}
-      <div className={css.filterGroup}>
-        <label >Сar mileage / km</label>
-        <div className={css.mileageInputs}>
-          <input
-            type="number"
-            placeholder="From"
-            value={draftMileage?.from ?? ''}
-            onChange={(e) =>
-              onDraftMileageChange({
-                ...draftMileage,
-                from: e.target.value ? Number(e.target.value) : null
-              })
-            }
-          />
-          <div className={css.mileageSeparator}></div>
-          <input
-            type="number"
-            placeholder="To"
-            value={draftMileage?.to ?? ''}
-            onChange={(e) =>
-              onDraftMileageChange({
-                ...draftMileage,
-                to: e.target.value ? Number(e.target.value) : null
-              })
-            }
-          />
-        </div>
-      </div>
-
+<div className={css.filterGroup}>
+  <label className={css.label}>Car mileage / km</label>
+  <div className={css.mileageInputs}>
+    <input
+      type="number"
+      placeholder="From"
+      value={draftMileage.from ?? ''}
+      onChange={(e) =>
+        onDraftMileageChange({
+          from: e.target.value ? Number(e.target.value) : null,
+          to: draftMileage.to,
+        })
+      }
+    />
+    <div className={css.mileageSeparator} />
+    <input
+      type="number"
+      placeholder="To"
+      value={draftMileage.to ?? ''}
+      onChange={(e) =>
+        onDraftMileageChange({
+          from: draftMileage.from,
+          to: e.target.value ? Number(e.target.value) : null,
+        })
+      }
+    />
+  </div>
+</div>
       <button className={css.button} type="submit">Search</button>
     </form>
     </section>

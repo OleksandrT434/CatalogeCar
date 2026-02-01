@@ -1,15 +1,27 @@
 import css from './LoadMoreButton.module.css';
 
-export default function LoadMoreButton({ onLoadMore, hasMore , loading }) {
-  if (!hasMore) return null;
+interface LoadMoreButtonProps {
+  onLoadMore: () => void;
+  hasMore: boolean;
+  isLoading: boolean;
+}
 
+export default function LoadMoreButton({ onLoadMore, hasMore, isLoading }: LoadMoreButtonProps) {
   return (
-    <button 
-      className={css.button} 
-      onClick={onLoadMore} 
-      disabled={loading}
-    >
-      {loading ? 'Load More...' : 'Load More'}
-    </button>
+    <div className={css.wrapper}>
+      {(hasMore) && (
+        <button 
+          type="button"
+          className={css.button}
+          onClick={onLoadMore}
+          disabled={isLoading}
+        >
+          Load More
+        </button>
+      )}
+      {isLoading && (
+        <p className={css.loadingText}>Loading...</p>
+      )}
+    </div>
   );
 }
