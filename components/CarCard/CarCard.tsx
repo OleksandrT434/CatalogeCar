@@ -14,7 +14,6 @@ export default function CarCard({ car }: CarCardProps) {
   state.favorites.includes(car?.id)
 );
 
-
   if (!car) return null;
   
 const maskedAddress = `${car.address.slice(3)}`;
@@ -29,7 +28,6 @@ const detailsLine = `${car.type} | ${car.mileage} km`;
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
     >
-    <div className={css.card}>
       <div className={css.imageWrapper}>
   <img
     src={car.img}
@@ -64,7 +62,6 @@ const detailsLine = `${car.type} | ${car.mileage} km`;
         </div>
         <Link href={`catalog/${car.id}`} className={css.buttonMore}>Read more</Link>
       </main>
-    </div>
     </motion.div>
   );
 }

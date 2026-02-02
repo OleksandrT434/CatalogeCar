@@ -5,7 +5,7 @@ import LoadMoreButton from '@/components/LoadMoreButton/LoadMoreButton';
 import { fetchCars } from '@/lib/clientApi';
 import Filter from '@/components/Filter/Filter';
 import { brandsApi } from '@/lib/clientApi';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './page.module.css';
 
@@ -97,7 +97,6 @@ function onLoadMore() {
           )}
       </div>
     </div>
-    <ToastContainer />
   </main>
 );
 }

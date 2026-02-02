@@ -1,25 +1,27 @@
-"use client";
+'use client';
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
 import css from "./Header.module.css";
 
 export default function Header() {
     const pathname = usePathname();
-    const [activeLink, setActiveLink] = useState<string | null>(null);
-
-    useEffect(() => {
-        setActiveLink(pathname);
-    }, [pathname]);
 
     return (
         <header className={css.header}>
-            <Link className={css.logo} href="/">Rental<span className={css.span}>Car</span></Link>
-            <nav className={css.nav}>
-                <Link href="/" className={activeLink === "/" ? css.active : ""}>Home</Link>
-                <Link href="/catalog" className={activeLink === "/catalog" ? css.active : ""}>Catalog</Link>
-            </nav>
+            <div className={css.container}>
+                <Link className={css.logo} href="/">
+                    Rental<span className={css.span}>Car</span>
+                </Link>
+                <nav className={css.nav}>
+                    <Link href="/" className={pathname === "/" ? css.active : css.link}>
+                        Home
+                    </Link>
+                    <Link href="/catalog" className={pathname === "/catalog" ? css.active : css.link}>
+                        Catalog
+                    </Link>
+                </nav>
+            </div>
         </header>
     );
 }

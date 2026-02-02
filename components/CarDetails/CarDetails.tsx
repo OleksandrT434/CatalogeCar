@@ -31,7 +31,7 @@ const handleSend = () => {
         toast.error('Please fill in all required fields.', {
         duration: 4000,
         style: {
-            borderRadius: '12px',
+          borderRadius: '12px',
           background: '#ff4b4b',
           color: '#fff',
         },
