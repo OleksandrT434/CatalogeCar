@@ -34,8 +34,9 @@ function createStyles<T extends BrandOption | PriceOption>(): StylesConfig<T, fa
     }),
     placeholder: (base) => ({
       ...base,
-      color: '#121417',
+      color: '#858585ff',
       margin: 0,
+      fontSize: '15px',
     }),
     input: (base) => ({
       ...base,
