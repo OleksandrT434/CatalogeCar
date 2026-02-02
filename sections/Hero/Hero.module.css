@@ -1,24 +1,29 @@
 .hero {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .heroimage {
   position: absolute; 
   inset: 0;
   z-index: -1;    
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
 }
 .heroContent {
   position: relative;
   z-index: 10;         
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 436px;
+  padding-top: 350px;
   padding-bottom: 60px;
   text-align: center;
+  
 }
 
 .heroContent h1 {
@@ -28,6 +33,7 @@
   line-height: 120%;
   text-align: center;
   color: #ffffff;
+  margin: 0;
 }
 .heroContent p{
     font-family: var(--font-family);
